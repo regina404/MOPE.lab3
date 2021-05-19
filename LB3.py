@@ -3,6 +3,8 @@ import random
 from numpy.linalg import solve
 from scipy.stats import f, t
 from functools import partial
+
+global x_range, x_aver_max,x_aver_min,y_max,y_min
 x_range = [(10, 40), (30, 80), (10, 20)]
 x_aver_max = (40 + 80 + 20)/ 3
 x_aver_min = (10 + 30 + 10) / 3
@@ -12,6 +14,7 @@ def regression(x, b):
     y = sum([x[i]*b[i] for i in range(len(x))])
     return y
 def plan_matrix(n, m):
+    print(x_range)
     y = np.zeros(shape=(n, m))
     for i in range(n):
         for j in range(m):
@@ -130,19 +133,16 @@ def main(n, m):
     print('\nПеревірка адекватності за критерієм Фішера')
     print('Fp =', F_p)
     print('F_t =', f_t)
+    
     if F_p < f_t:
         print('Математична модель адекватна експериментальним даним')
     else:
         print('Математична модель не адекватна експериментальним даним')
-    if F_p < f_t: 
-        print('Математична модель адекватна експериментальним даним') 
-    else: 
-        print('Математична модель не адекватна експериментальним даним') 
-        global x_range, x_aver_max,x_aver_min,y_max,y_min 
-        x_range = [(10 * y_new[0], 40 * y_new[0]), (30 * y_new[1], 80 * y_new[1]), (10 * y_new[2], 20 * y_new[2])] 
-        x_aver_max = ((40 + 80 + 20) / 3)*y_new[0]*y_new[1]*y_new[2]*y_new[3] 
-        x_aver_min = ((10 + 30 + 10) / 3)*y_new[0]*y_new[1]*y_new[2]*y_new[3] 
-        y_max = (200 + int(x_aver_max))*y_new[0]*y_new[1]*y_new[2]*y_new[3] 
+        global x_range, x_aver_max,x_aver_min,y_max,y_min
+        x_range = [(10 * y_new[0], 40 * y_new[0]), (30 * y_new[1], 80 * y_new[1]), (10 * y_new[2], 20 * y_new[2])]
+        x_aver_max = ((40 + 80 + 20) / 3)*y_new[0]*y_new[1]*y_new[2]*y_new[3]
+        x_aver_min = ((10 + 30 + 10) / 3)*y_new[0]*y_new[1]*y_new[2]*y_new[3]
+        y_max = (200 + int(x_aver_max))*y_new[0]*y_new[1]*y_new[2]*y_new[3]
         y_min = (200 + int(x_aver_min))*y_new[0]*y_new[1]*y_new[2]*y_new[3]    
 
 
