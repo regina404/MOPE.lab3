@@ -134,6 +134,16 @@ def main(n, m):
         print('Математична модель адекватна експериментальним даним')
     else:
         print('Математична модель не адекватна експериментальним даним')
+    if F_p < f_t: 
+        print('Математична модель адекватна експериментальним даним') 
+    else: 
+        print('Математична модель не адекватна експериментальним даним') 
+        global x_range, x_aver_max,x_aver_min,y_max,y_min 
+        x_range = [(10 * y_new[0], 40 * y_new[0]), (30 * y_new[1], 80 * y_new[1]), (10 * y_new[2], 20 * y_new[2])] 
+        x_aver_max = ((40 + 80 + 20) / 3)*y_new[0]*y_new[1]*y_new[2]*y_new[3] 
+        x_aver_min = ((10 + 30 + 10) / 3)*y_new[0]*y_new[1]*y_new[2]*y_new[3] 
+        y_max = (200 + int(x_aver_max))*y_new[0]*y_new[1]*y_new[2]*y_new[3] 
+        y_min = (200 + int(x_aver_min))*y_new[0]*y_new[1]*y_new[2]*y_new[3]    
 
 
 main(4, 4)  # 124 стрічка ми реалізуємо функцію main та передаємо їй 2 аргументи: n і m
